@@ -38,13 +38,13 @@ export default function Home() {
                 <GraduationCap className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-slate-900">钟格传奇投资特训营</h1>
-                <p className="text-sm text-slate-500">从400元到20亿的投资心法 | 三周精华内容</p>
+                <h1 className="text-xl font-bold text-slate-900">股票投资课程合集</h1>
+                <p className="text-sm text-slate-500">系统学习股票投资 | 从基础到进阶完整体系</p>
               </div>
             </div>
             <Badge variant="secondary" className="text-sm bg-gradient-to-r from-amber-100 to-orange-100 text-amber-800">
               <Star className="w-3 h-3 mr-1" />
-              价值千万的实战课程
+              实战精华课程
             </Badge>
           </div>
         </div>
@@ -175,8 +175,8 @@ export default function Home() {
       <footer className="bg-white border-t border-slate-200 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="text-center text-sm text-slate-500">
-            <p>课件记录系统 - 方便讲课复制讲解</p>
-            <p className="mt-1">30年投资智慧浓缩成{courseDays.length}天精华内容</p>
+            <p>股票投资课程合集 - 系统学习投资知识</p>
+            <p className="mt-1">完整课程体系，助你掌握投资核心技能</p>
           </div>
         </div>
       </footer>
