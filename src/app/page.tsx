@@ -7,8 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
+import { ThemeToggle } from '@/components/theme-toggle';
 import { 
-  BookOpen, 
   Calendar, 
   Search, 
   ChevronRight,
@@ -28,9 +28,9 @@ export default function Home() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-950 dark:to-slate-900">
       {/* Header */}
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
+      <header className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -38,14 +38,17 @@ export default function Home() {
                 <GraduationCap className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-slate-900">股票投资课程合集</h1>
-                <p className="text-sm text-slate-500">系统学习股票投资 | 从基础到进阶完整体系</p>
+                <h1 className="text-xl font-bold text-slate-900 dark:text-white">股票投资课程合集</h1>
+                <p className="text-sm text-slate-500 dark:text-slate-400">系统学习股票投资 | 从基础到进阶完整体系</p>
               </div>
             </div>
-            <Badge variant="secondary" className="text-sm bg-gradient-to-r from-amber-100 to-orange-100 text-amber-800">
-              <Star className="w-3 h-3 mr-1" />
-              实战精华课程
-            </Badge>
+            <div className="flex items-center gap-2">
+              <ThemeToggle />
+              <Badge variant="secondary" className="text-sm bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900 dark:to-orange-900 text-amber-800 dark:text-amber-200 hidden sm:inline-flex">
+                <Star className="w-3 h-3 mr-1" />
+                实战精华课程
+              </Badge>
+            </div>
           </div>
         </div>
       </header>
@@ -84,11 +87,11 @@ export default function Home() {
         <section className="mb-10">
           <div className="flex items-center gap-2 mb-6">
             <Target className="w-5 h-5 text-blue-600" />
-            <h2 className="text-2xl font-bold text-slate-900">课程体系</h2>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">课程体系</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {courseModules.map((module) => (
-              <Card key={module.id} className="hover:shadow-lg transition-shadow border-2 hover:border-blue-300">
+              <Card key={module.id} className="hover:shadow-lg transition-shadow border-2 hover:border-blue-300 dark:hover:border-blue-700">
                 <CardHeader className="pb-3">
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center shadow-md">
@@ -102,7 +105,7 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
-                    {module.topics.map((topic, idx) => (
+                    {module.topics.map((topic: string, idx: number) => (
                       <Badge key={idx} variant="outline" className="text-xs">
                         {topic}
                       </Badge>
@@ -132,22 +135,22 @@ export default function Home() {
         <section>
           <div className="flex items-center gap-2 mb-6">
             <Calendar className="w-5 h-5 text-blue-600" />
-            <h2 className="text-2xl font-bold text-slate-900">{courseDays.length}天课程安排</h2>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{courseDays.length}天课程安排</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {filteredCourses.map((course) => (
               <Link key={course.day} href={`/day/${course.day}`}>
-                <Card className="h-full hover:shadow-lg transition-all hover:border-blue-300 cursor-pointer group">
+                <Card className="h-full hover:shadow-lg transition-all hover:border-blue-300 dark:hover:border-blue-700 cursor-pointer group">
                   <CardHeader>
                     <div className="flex items-center gap-3 mb-2">
                       <div className="flex-shrink-0 w-14 h-14 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-md">
                         <span className="text-lg font-bold text-white">第{course.day}天</span>
                       </div>
-                      <div className="flex-1">
+                      <div className="flex-1 min-w-0">
                         <Badge variant="outline" className="text-xs mb-1">{course.week}</Badge>
                         <CardTitle className="text-base leading-tight">{course.title}</CardTitle>
                       </div>
-                      <ChevronRight className="w-5 h-5 text-slate-300 group-hover:text-blue-500 transition-colors" />
+                      <ChevronRight className="w-5 h-5 text-slate-300 group-hover:text-blue-500 transition-colors shrink-0" />
                     </div>
                     <CardDescription className="text-sm">{course.subtitle}</CardDescription>
                   </CardHeader>
@@ -159,7 +162,7 @@ export default function Home() {
                         </Badge>
                       ))}
                     </div>
-                    <div className="mt-3 flex items-center gap-2 text-sm text-slate-500">
+                    <div className="mt-3 flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
                       <Clock className="w-4 h-4" />
                       <span>{course.segments.length}个分段内容</span>
                     </div>
@@ -172,9 +175,9 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 mt-12">
+      <footer className="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="text-center text-sm text-slate-500">
+          <div className="text-center text-sm text-slate-500 dark:text-slate-400">
             <p>股票投资课程合集 - 系统学习投资知识</p>
             <p className="mt-1">完整课程体系，助你掌握投资核心技能</p>
           </div>

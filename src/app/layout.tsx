@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inspector } from 'react-dev-inspector';
+import { ThemeProvider } from '@/components/theme-provider';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -43,10 +44,17 @@ export default function RootLayout({
   const isDev = process.env.NODE_ENV === 'development';
 
   return (
-    <html lang="en">
+    <html lang="zh-CN" suppressHydrationWarning>
       <body className={`antialiased`}>
-        {isDev && <Inspector />}
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {isDev && <Inspector />}
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
